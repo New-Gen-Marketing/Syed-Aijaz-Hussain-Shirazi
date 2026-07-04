@@ -212,6 +212,8 @@ nav.links a:hover::after{width:100%;}
   justify-content:center;
   gap:0.5rem;
   box-shadow:var(--shadow), inset 0 0 0 6px var(--paper);
+  object-fit:cover;
+  object-position:center top;
 }
 .photo-placeholder .mono{
   font-family:'Fraunces', serif;
@@ -599,7 +601,13 @@ footer{
   <div class="wrap hero-grid">
     <div class="photo-frame">
       <div class="photo-ring"></div>
-      <div class="photo-placeholder">
+      <!--
+        TO ADD THE PHOTO:
+        Replace "headshot.jpg" below with the filename (if placed in the same
+        folder as this HTML file) or a full URL to the hosted image.
+      -->
+      <img class="photo-placeholder" id="photoImg" src="Gemini_Generated_Image_ihfo2zihfo2zihfo.png" alt="Syed Aijaz Hussain Shirazi" onerror="this.style.display='none';document.getElementById('photoFallback').style.display='flex';">
+      <div class="photo-placeholder" id="photoFallback" style="display:none;">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6" stroke-linecap="round"/><circle cx="12" cy="8" r="4"/></svg>
         <span class="cap">Professional<br>photograph</span>
       </div>
