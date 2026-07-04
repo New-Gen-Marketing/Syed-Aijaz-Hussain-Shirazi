@@ -431,7 +431,9 @@ section{
   transition:transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
   position:relative;
   overflow:hidden;
+  cursor:pointer;
 }
+.pcard:focus-visible{outline:2px solid var(--maroon);outline-offset:3px;}
 .pcard::before{
   content:"";
   position:absolute;top:0;left:0;
@@ -446,6 +448,95 @@ section{
 .pcard svg{width:28px;height:28px;stroke:var(--maroon);margin-bottom:1rem;}
 .pcard h3{font-size:1.05rem;margin-bottom:0.5rem;}
 .pcard p{color:var(--ink-soft);font-size:0.9rem;}
+.pcard-more{
+  display:inline-flex;
+  align-items:center;
+  gap:0.3rem;
+  margin-top:1rem;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.68rem;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:var(--maroon);
+  transition:gap 0.25s ease;
+}
+.pcard:hover .pcard-more{gap:0.55rem;}
+
+/* ===== SERVICE DETAIL MODAL ===== */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:rgba(36,30,23,0.62);
+  backdrop-filter:blur(3px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:5vh 5vw;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.3s ease;
+}
+.modal-overlay.open{opacity:1;pointer-events:auto;}
+.modal-box{
+  background:var(--paper);
+  max-width:640px;
+  width:100%;
+  max-height:82vh;
+  overflow-y:auto;
+  border-radius:4px;
+  border:1px solid var(--line);
+  box-shadow:0 30px 60px rgba(36,30,23,0.35);
+  padding:2.6rem;
+  position:relative;
+  transform:translateY(24px) scale(0.98);
+  transition:transform 0.35s cubic-bezier(.2,.8,.2,1);
+}
+.modal-overlay.open .modal-box{transform:translateY(0) scale(1);}
+@media (max-width:640px){
+  .modal-box{padding:2rem 1.5rem;max-height:86vh;}
+}
+.modal-close{
+  position:absolute;
+  top:1.2rem;right:1.2rem;
+  width:34px;height:34px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--ink-soft);
+  font-size:1.1rem;
+  line-height:1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+.modal-close:hover{background:var(--maroon);color:var(--paper);transform:rotate(90deg);}
+.modal-icon{width:34px;height:34px;stroke:var(--maroon);margin-bottom:1rem;}
+.modal-box h3{font-size:1.5rem;margin-bottom:0.7rem;padding-right:2rem;}
+.modal-intro{color:var(--ink-soft);font-size:0.96rem;margin-bottom:1.4rem;}
+.modal-list{
+  list-style:none;
+  border-top:1px solid var(--line);
+}
+.modal-list li{
+  padding:0.9rem 0;
+  border-bottom:1px solid var(--line);
+  font-size:0.92rem;
+  color:var(--ink);
+  display:flex;
+  gap:0.7rem;
+  line-height:1.5;
+}
+.modal-list li::before{
+  content:"";
+  flex-shrink:0;
+  width:6px;height:6px;
+  margin-top:0.5rem;
+  border-radius:50%;
+  background:var(--brass);
+}
 
 /* ===== DOCKET / REPORTED JUDGMENTS (signature) ===== */
 .docket{
@@ -720,94 +811,109 @@ footer{
     </div>
     <div class="practice-grid">
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="banking-finance" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 10v9M15 10v9"/><path d="M3 19h18"/></svg>
         <h3>Banking &amp; Finance</h3>
         <p>Loan, security and charge documentation, syndicate facilities, restructuring, legal audits, and recovery proceedings before Banking Courts and High Courts.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="mortgage-finance" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21h16"/><path d="M6 21V9l6-5 6 5v12"/><path d="M10 21v-6h4v6"/></svg>
         <h3>Mortgage Finance</h3>
         <p>Title review, search certificates, mortgage creation and redemption, and registration of mortgage deeds for financial institutions and private borrowers.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="islamic-finance" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
         <h3>Islamic Finance</h3>
         <p>Shariah-compliant documentation and advisory for Sukuk, musharakah, murabaha and ijara structures.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="arbitration" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l-3 5 3 5M19 8l3 5-3 5M2 13h6M16 13h6"/></svg>
         <h3>Arbitration</h3>
         <p>Drafting and issuing arbitration notices, representation before arbitrators, and challenges to awards before the courts.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="criminal-complaints" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
         <h3>Criminal Complaints</h3>
         <p>Drafting, filing and conducting the trial of criminal complaints on behalf of financial institutions under the Financial Institutions (Recovery of Finances) Ordinance, 2001, including obtaining non-bailable warrants and drafting NAB references.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="banking-offences" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
         <h3>Banking Offences</h3>
         <p>Pre- and post-arrest bail from Special Courts (Banking Offences) and High Courts, and representation of banks and financial institutions in fraudulent misrepresentation matters.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="criminal-disputes" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-3 6a3 3 0 006 0zM19 7l-3 6a3 3 0 006 0z"/></svg>
         <h3>Criminal Disputes &amp; Litigation</h3>
         <p>Petty theft to heinous crime, including fraud, embezzlement, forgery and misappropriation of pledged or hypothecated goods, plus Customs Court and narcotics-related matters at every forum.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="labour-service" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
         <h3>Labour &amp; Service Laws</h3>
         <p>Opinions on labour and service issues, and representation of individuals and institutions before Labour Courts and Service Tribunals.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="landlord-tenant" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5L20 3M17 6l3 3M13 10l2 2"/></svg>
         <h3>Landlord &amp; Tenant</h3>
         <p>Rent and lease agreements, fair-rent determination, deposit of rent, restoration of amenities, and ejectment proceedings before the Rent Controller.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="business-startup" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V10"/><path d="M12 10C9 10 7 8 7 5c3 0 5 2 5 5zM12 10c3 0 5-2 5-5-3 0-5 2-5 5z"/></svg>
         <h3>Business Startup</h3>
         <p>Establishing and registering public and private limited companies, not-for-profit companies, partnerships and sole proprietorships, including SECP registration and trademark filings.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="company-laws" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
         <h3>Company Laws</h3>
         <p>Advising on Companies Ordinance and SECP compliance, contract drafting and vetting, minority-shareholder protection, and petitions for merger or winding-up before the High Court.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="constitutional-matters" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4zM4 12h10v8H4zM17 12h3v8h-3z"/></svg>
         <h3>Constitutional Matters</h3>
         <p>Drafting, filing and arguing constitutional petitions before the High Courts, including fundamental-rights violations, public-interest litigation, and cases against government functionaries.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="construction-building" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h4V10l10-5v5h4M13 10v11M17 10l4 4"/></svg>
         <h3>Construction &amp; Building</h3>
         <p>Construction and professional-appointment contracts, environmental NOCs under the Pakistan Environmental Protection Act, and arbitration for construction disputes.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="family-matters" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 6a5.5 5.5 0 019.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
         <h3>Family Matters</h3>
         <p>Dissolution of marriage by Khula, maintenance of wife and children, recovery of dower amount and dowry articles, and restitution of conjugal rights before the Family Courts.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
-      <div class="pcard reveal">
+      <div class="pcard reveal" data-service="guardian-wards" tabindex="0" role="button" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3 3-5 7-5s7 2 7 5"/><path d="M17 11l2 2 4-4"/></svg>
         <h3>Guardian &amp; Wards Disputes</h3>
         <p>Appointment of guardians, custody of minors, and guardianship certificates before the Family and Guardian Courts, handled with due diligence and expeditious disposal.</p>
+        <span class="pcard-more">View details &rarr;</span>
       </div>
 
     </div>
@@ -939,9 +1045,9 @@ footer{
         <div><a href="tel:+923332252629">0333 225 2629</a></div>
       </div>
       <div class="c-block">
-        <div class="eyebrow2">Email &amp; Web</div>
+        <div class="eyebrow2">Email</div>
         <div><a href="mailto:aijaz.shirazi@asc.org.pk">aijaz.shirazi@asc.org.pk</a></div>
-        <div><a href="https://new-gen-marketing.github.io/Syed-Aijaz-Hussain-Shirazi/">https://new-gen-marketing.github.io/Syed-Aijaz-Hussain-Shirazi/</a></div>
+        <div><a href="http://www.asc.org.pk"></a></div>
       </div>
     </div>
   </div>
@@ -950,6 +1056,16 @@ footer{
 <footer>
   &copy; Aijaz Shirazi &amp; Company &mdash; Advocates &amp; Legal Consultants, Karachi
 </footer>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <svg class="modal-icon" id="modalIcon" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"></svg>
+    <h3 id="modalTitle"></h3>
+    <p class="modal-intro" id="modalIntro"></p>
+    <ul class="modal-list" id="modalList"></ul>
+  </div>
+</div>
 
 <script>
 // scroll reveal
@@ -962,6 +1078,252 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, {threshold:0.12});
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ===== SERVICE DETAIL MODAL =====
+const serviceData = {
+  "banking-finance": {
+    icon: '<path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 10v9M15 10v9"/><path d="M3 19h18"/>',
+    title: "Banking & Finance",
+    intro: "ASC acts for several major Pakistani and foreign banks on national and international acquisitions and finance transactions, including secured and unsecured lending and syndicate loans.",
+    items: [
+      "Drafting various loan, security and charge documents on behalf of banks and other financial institutions.",
+      "Drafting various agreements for banks and other financial institutions.",
+      "Advising leasing companies on different legal issues.",
+      "Drafting and negotiating settlement, restructuring and rescheduling agreements for banks and other financial institutions.",
+      "Drafting and negotiating agreements for syndicate finance facilities.",
+      "Conducting legal audit of banks and other financial institutions, and credit record.",
+      "Giving formal opinions to banks and financial institutions on title and validity of securities offered by their borrowers.",
+      "Getting charges registered and notified in favour of banks and financial institutions with the SECP.",
+      "In case of default, representing banks, leasing companies and financial institutions in Banking Courts and High Courts to obtain earliest decrees and recover decretal amounts through sale of securities.",
+      "Defending cases filed by customers against financial institutions for rendition of account, redemption and recovery of damages.",
+      "Issuance of notices for sale of pledged assets without court intervention, and conducting the auction of pledged assets."
+    ]
+  },
+  "mortgage-finance": {
+    icon: '<path d="M4 21h16"/><path d="M6 21V9l6-5 6 5v12"/><path d="M10 21v-6h4v6"/>',
+    title: "Mortgage Finance",
+    intro: "ASC has extensive expertise advising financial institutions, corporate and private borrowers on all stages of mortgage finance.",
+    items: [
+      "Reviewing property documents of immovable properties situated in various areas of the country.",
+      "Obtaining search certificates.",
+      "Confirming genuineness of property documents from the relevant authority.",
+      "Rendering opinion on the creation of mortgage.",
+      "Rendering opinion on requirements of documents for creation of mortgage.",
+      "Drafting agreements and other mortgage documents.",
+      "Drafting memorandum of deposit of title deeds.",
+      "Arranging registration of mortgage deed with the Sub-Registrar of the area where the property is situated.",
+      "Arranging redemption of mortgage with the Sub-Registrar of the area where the mortgage deed was registered."
+    ]
+  },
+  "islamic-finance": {
+    icon: '<path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/>',
+    title: "Islamic Finance",
+    intro: "ASC has wide experience in Islamic banking and finance documentation and advisory work.",
+    items: [
+      "Advising companies and Islamic finance institutions on issues relating to Islamic finance.",
+      "Instituting and defending suits based on Islamic finance.",
+      "Drafting standard Islamic financing documents in compliance with recognised Shariah principles.",
+      "Drafting documents for Sukuk and musharakah transactions.",
+      "Advising on Islamic finance, including ijara lease agreements, murabaha finance contracts, istisna and musharakah agreements."
+    ]
+  },
+  "arbitration": {
+    icon: '<path d="M12 3v18M5 8l-3 5 3 5M19 8l3 5-3 5M2 13h6M16 13h6"/>',
+    title: "Arbitration",
+    intro: "Disputes are increasingly resolved through arbitration for its speed, privacy, informality and specialist expertise. ASC's trained team mediates and settles disputes, and safeguards client interests wherever arbitration is necessary.",
+    items: [
+      "Drafting and issuing arbitration notices.",
+      "Drafting, filing and arguing arbitration applications before the relevant courts.",
+      "Representing clients in arbitration proceedings before recognised arbitrators and arbitration associations.",
+      "Negotiating and mediating with all relevant parties to secure a favourable result for clients.",
+      "Challenging arbitration awards before the courts of competent jurisdiction.",
+      "Filing objections to awards before the courts and contesting the same."
+    ]
+  },
+  "criminal-complaints": {
+    icon: '<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/>',
+    title: "Criminal Complaints",
+    intro: "ASC regularly represents banks, leasing companies, other financial institutions, and private clients in criminal complaints before the Banking Courts.",
+    items: [
+      "Drafting, filing and conducting trial of criminal complaints on behalf of financial institutions under Section 20 of the Financial Institutions (Recovery of Finance) Ordinance, 2001.",
+      "Obtaining non-bailable warrants against the accused.",
+      "Drafting, filing and conducting trial of criminal complaints where the accused dishonestly alienated mortgaged property.",
+      "Drafting, filing and conducting trial of criminal complaints where the accused has dishonestly removed hypothecated assets.",
+      "Drafting, filing and conducting trial of criminal complaints where cheques issued by the accused were dishonoured.",
+      "Drafting of NAB references."
+    ]
+  },
+  "banking-offences": {
+    icon: '<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/>',
+    title: "Banking Offences",
+    intro: "ASC regularly advises banks, leasing companies and other financial institutions on banking and financial crimes, with extensive litigation experience in the area.",
+    items: [
+      "Obtaining pre- and post-arrest bail for clients from the Special Court (Banking Offences) and the High Courts.",
+      "Representing banks and other financial institutions in fraudulent misrepresentation made to them.",
+      "Representing banks and other financial institutions in offences under the jurisdiction of the Special Court (Banking Offences)."
+    ]
+  },
+  "criminal-disputes": {
+    icon: '<path d="M12 3v18M5 7h14M5 7l-3 6a3 3 0 006 0zM19 7l-3 6a3 3 0 006 0z"/>',
+    title: "Criminal Disputes & Litigation",
+    intro: "ASC deals in matters ranging from petty theft to heinous crime — including homicide, drug-trafficking, smuggling, fraud, embezzlement, forgery, and misappropriation or theft of pledged and hypothecated goods — alongside offences relating to financial institutions, and Customs Court, adjudication, narcotics and smuggling matters at every forum.",
+    items: [
+      "Obtaining pre- and post-arrest bail for clients from all Special Courts, District Courts and High Courts.",
+      "Representing financial institutions in fraudulent misrepresentation made to them.",
+      "Representing banks and financial institutions in offences under the jurisdiction of Special Courts."
+    ]
+  },
+  "labour-service": {
+    icon: '<path d="M4 7h16M4 12h16M4 17h10"/>',
+    title: "Labour & Service Laws",
+    intro: "ASC provides labour and employment law advice, and represents individuals and organisations before the Labour Courts, Service Tribunals and other authorities with jurisdiction.",
+    items: [
+      "Rendering opinion on labour and service issues.",
+      "Drafting and filing applications before the Labour Courts and Service Tribunals on behalf of individual workers, and conducting the trial.",
+      "Defending labour applications on behalf of institutions and conducting the trial."
+    ]
+  },
+  "landlord-tenant": {
+    icon: '<circle cx="8" cy="15" r="4"/><path d="M10.5 12.5L20 3M17 6l3 3M13 10l2 2"/>',
+    title: "Landlord & Tenant",
+    intro: "ASC handles execution and registration of rent and lease agreements, follow-up on expiry, and disputes before the Rent Controller — including fair rent, deposit of rent on refusal, restoration of amenities, and ejectment for bona fide personal need, reconstruction, or default.",
+    items: [
+      "Rendering opinion on rent issues.",
+      "Drafting notices regarding change of ownership of the premises.",
+      "Drafting, filing and conducting trial of applications for fair rent before the Rent Controller.",
+      "Drafting, filing and arguing applications for deposit of rent where the landlord refuses to receive it.",
+      "Drafting, filing and conducting trial of applications for restoration of amenities discontinued by the landlord.",
+      "Drafting, filing and conducting trial of applications for ejectment of tenant where the landlord requires the premises for personal need.",
+      "Drafting, filing and conducting trial of applications for ejectment where the tenant has defaulted in payment of rent.",
+      "Drafting, filing and conducting trial of applications on behalf of a landlord requiring premises for reconstruction.",
+      "Drafting and filing applications on behalf of a tenant seeking possession after construction, where the landlord refuses to restore it."
+    ]
+  },
+  "business-startup": {
+    icon: '<path d="M12 21V10"/><path d="M12 10C9 10 7 8 7 5c3 0 5 2 5 5zM12 10c3 0 5-2 5-5-3 0-5 2-5 5z"/>',
+    title: "Business Startup",
+    intro: "ASC's dedicated team assists clients with business startups through several modes, including establishment and registration of public limited companies, private limited companies, not-for-profit companies, partnerships and sole proprietorships.",
+    items: [
+      "Registration of company with the SECP in compliance with the Companies Ordinance, 1984 and all relevant rules and regulations.",
+      "Drafting and registration of partnership deed with the Registrar of Firms.",
+      "Drafting Memorandum of Association and Articles of Association.",
+      "Registration of trademarks and copyrights for newly established businesses."
+    ]
+  },
+  "company-laws": {
+    icon: '<rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/>',
+    title: "Company Laws",
+    intro: "ASC specialises in advising leading public and private companies on company law issues, ensuring compliance with the Companies Ordinance, 1984 and all relevant SECP rules and regulations.",
+    items: [
+      "Advising companies on regulatory requirements.",
+      "Rendering legal opinions to companies on financing documents and matters pertaining to the SECP.",
+      "Rendering legal opinions to companies on trade mark, patent and copyright issues.",
+      "Drafting and vetting various contracts for companies.",
+      "Rendering legal opinions on contracts already executed by companies.",
+      "Rendering legal opinions to companies on employment disputes.",
+      "Protecting the interest of minority shareholders under the Companies Ordinance, 1984.",
+      "Representing companies before the SECP and arbitrators.",
+      "Filing petitions for merger of companies in the High Court under the Companies Ordinance, 1984.",
+      "Filing petitions for winding up of companies in the High Court under the Companies Ordinance, 1984."
+    ]
+  },
+  "constitutional-matters": {
+    icon: '<path d="M4 4h16v4H4zM4 12h10v8H4zM17 12h3v8h-3z"/>',
+    title: "Constitutional Matters",
+    intro: "ASC has developed considerable experience drafting, filing and arguing constitutional petitions before the High Courts and obtaining favourable orders for clients.",
+    items: [
+      "Drafting, filing and arguing constitutional cases in the High Courts.",
+      "Drafting, filing and arguing constitutional petitions against violations of fundamental rights guaranteed under the Constitution of Pakistan.",
+      "Drafting, filing and arguing public interest petitions in the High Courts.",
+      "Drafting, filing and arguing constitutional petitions against government functionaries for illegal detention and harassment."
+    ]
+  },
+  "construction-building": {
+    icon: '<path d="M3 21h4V10l10-5v5h4M13 10v11M17 10l4 4"/>',
+    title: "Construction & Building",
+    intro: "ASC regularly advises contractors, builders and property developers on development projects, providing solutions at every phase — including environmental NOCs required under the Pakistan Environmental Protection Act, 1997 — with arbitration services available for construction disputes.",
+    items: [
+      "Drafting and vetting of construction contracts.",
+      "Drafting and vetting of professional advisory contracts, including architects', surveyors' and engineers' appointment contracts.",
+      "Drafting and vetting lease agreements, pre-let agreements, development contracts and sale and purchase agreements.",
+      "Representing builders, contractors and property developers in cases before District Courts and High Courts.",
+      "Advising on fulfilling legal requirements prior to construction and obtaining relevant NOCs from government departments.",
+      "Advising on relevant environmental laws and the necessary approvals to be obtained.",
+      "Assisting in preparation of environmental compliance reports conforming to legal requirements.",
+      "Assisting in obtaining building and commercialisation permission from all relevant government departments."
+    ]
+  },
+  "family-matters": {
+    icon: '<path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 6a5.5 5.5 0 019.5 6c-2.5 4.5-9.5 9-9.5 9z"/>',
+    title: "Family Matters",
+    intro: "ASC has considerable experience drafting, filing and conducting the trial of family matters before the Family Courts to Appellate Courts, regarding dissolution of marriage by way of Khula, maintenance, dower recovery, and restitution of conjugal rights.",
+    items: [
+      "Drafting legal notice.",
+      "Drafting a divorce deed and its proceedings before the relevant authority for confirmation.",
+      "Drafting and filing suit for dissolution of marriage by way of Khula before the Family Courts.",
+      "Drafting and filing suit for recovery of dower amount and dowry articles before the Family Courts.",
+      "Drafting and filing suit for maintenance of wife and children before the Family Courts.",
+      "Drafting and filing suit for restitution of conjugal rights before the Family Courts."
+    ]
+  },
+  "guardian-wards": {
+    icon: '<circle cx="9" cy="8" r="3"/><path d="M2 20c0-3 3-5 7-5s7 2 7 5"/><path d="M17 11l2 2 4-4"/>',
+    title: "Guardian & Wards Disputes",
+    intro: "ASC has considerable experience drafting, filing and conducting the trial of Guardian and Wards disputes before the Family Courts to Appellate Courts, handled with due diligence and expeditious disposal.",
+    items: [
+      "Drafting legal notice.",
+      "Drafting and filing suit for appointment of guardian and conducting the trial before the Guardian Court.",
+      "Drafting and filing suit for custody of a minor, arranging meetings with the minor, and conducting the trial before the Guardian Court.",
+      "Drafting and filing suit for a Guardianship Certificate, and appointing a guardian from the competent court."
+    ]
+  }
+};
+
+const modalOverlay = document.getElementById('modalOverlay');
+const modalIcon = document.getElementById('modalIcon');
+const modalTitle = document.getElementById('modalTitle');
+const modalIntro = document.getElementById('modalIntro');
+const modalList = document.getElementById('modalList');
+const modalClose = document.getElementById('modalClose');
+let lastFocused = null;
+
+function openServiceModal(key){
+  const data = serviceData[key];
+  if(!data) return;
+  modalIcon.innerHTML = data.icon;
+  modalTitle.textContent = data.title;
+  modalIntro.textContent = data.intro;
+  modalList.innerHTML = data.items.map(i => `<li>${i}</li>`).join('');
+  lastFocused = document.activeElement;
+  modalOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  modalClose.focus();
+}
+
+function closeServiceModal(){
+  modalOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+  if(lastFocused) lastFocused.focus();
+}
+
+document.querySelectorAll('.pcard[data-service]').forEach(card => {
+  card.addEventListener('click', () => openServiceModal(card.dataset.service));
+  card.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      openServiceModal(card.dataset.service);
+    }
+  });
+});
+
+modalClose.addEventListener('click', closeServiceModal);
+modalOverlay.addEventListener('click', (e) => {
+  if(e.target === modalOverlay) closeServiceModal();
+});
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape' && modalOverlay.classList.contains('open')) closeServiceModal();
+});
+
 </script>
 
 </body>
