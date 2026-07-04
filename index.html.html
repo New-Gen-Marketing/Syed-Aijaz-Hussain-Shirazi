@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syed Aijaz Hussain Shirazi — Advocate, Supreme Court of Pakistan</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --paper:#F4EDDD;
+  --paper-alt:#EAE1C9;
+  --ink:#241E17;
+  --ink-soft:#54493C;
+  --maroon:#7C2C22;
+  --maroon-deep:#511B14;
+  --brass:#A9823E;
+  --brass-soft:#C9A868;
+  --line:rgba(36,30,23,0.16);
+  --shadow:0 18px 40px rgba(81,27,20,0.14);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Source Serif 4', Georgia, serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+}
+
+h1,h2,h3,h4{
+  font-family:'Fraunces', Georgia, serif;
+  font-weight:600;
+  color:var(--maroon-deep);
+  letter-spacing:-0.01em;
+}
+
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--maroon);
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+}
+.eyebrow::before{
+  content:"";
+  width:26px;
+  height:1px;
+  background:var(--brass);
+  display:inline-block;
+}
+
+a{color:inherit;}
+
+.wrap{
+  max-width:1140px;
+  margin:0 auto;
+  padding:0 6vw;
+}
+
+/* texture */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.5;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(124,44,34,0.03), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(169,130,62,0.05), transparent 45%);
+}
+
+/* ===== NAV ===== */
+header.nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(244,237,221,0.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1140px;
+  margin:0 auto;
+  padding:1rem 6vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.nav-mark{
+  display:flex;
+  align-items:center;
+  gap:0.7rem;
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:1.05rem;
+  color:var(--maroon-deep);
+}
+.nav-mark .seal{
+  width:34px;height:34px;
+  border-radius:50%;
+  border:1.4px solid var(--maroon);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;
+  color:var(--maroon);
+  flex-shrink:0;
+}
+nav.links{
+  display:flex;
+  gap:1.8rem;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+nav.links a{
+  text-decoration:none;
+  color:var(--ink-soft);
+  position:relative;
+  padding-bottom:3px;
+}
+nav.links a::after{
+  content:"";
+  position:absolute;left:0;bottom:0;
+  width:0;height:1px;
+  background:var(--maroon);
+  transition:width 0.3s ease;
+}
+nav.links a:hover{color:var(--maroon-deep);}
+nav.links a:hover::after{width:100%;}
+.nav-toggle{display:none;background:none;border:none;font-size:1.4rem;color:var(--maroon-deep);cursor:pointer;}
+
+@media (max-width:820px){
+  nav.links{
+    position:fixed;
+    top:64px;left:0;right:0;
+    background:var(--paper);
+    flex-direction:column;
+    padding:1.2rem 6vw;
+    gap:1.1rem;
+    border-bottom:1px solid var(--line);
+    transform:translateY(-120%);
+    opacity:0;
+    transition:transform 0.35s ease, opacity 0.35s ease;
+  }
+  nav.links.open{transform:translateY(0);opacity:1;}
+  .nav-toggle{display:block;}
+}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  padding:5.5rem 0 4rem;
+  z-index:1;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:3.2rem;
+  align-items:center;
+}
+@media (max-width:760px){
+  .hero-grid{grid-template-columns:1fr;text-align:center;justify-items:center;}
+}
+
+.photo-frame{
+  position:relative;
+  width:220px;height:220px;
+  flex-shrink:0;
+  opacity:0;
+  animation:riseIn 0.9s 0.15s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.photo-ring{
+  position:absolute;inset:-10px;
+  border-radius:50%;
+  border:1px solid var(--brass-soft);
+  animation:spin 40s linear infinite;
+}
+.photo-ring::before, .photo-ring::after{
+  content:"";
+  position:absolute;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--brass);
+  top:50%;left:-3px;
+  transform:translateY(-50%);
+}
+.photo-ring::after{left:auto;right:-3px;}
+.photo-placeholder{
+  width:100%;height:100%;
+  border-radius:50%;
+  background:
+    repeating-linear-gradient(135deg, rgba(124,44,34,0.06) 0 10px, transparent 10px 20px),
+    linear-gradient(160deg, var(--paper-alt), var(--paper));
+  border:2px solid var(--maroon);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:0.5rem;
+  box-shadow:var(--shadow), inset 0 0 0 6px var(--paper);
+}
+.photo-placeholder .mono{
+  font-family:'Fraunces', serif;
+  font-size:2.1rem;
+  color:var(--maroon);
+  font-weight:600;
+}
+.photo-placeholder svg{width:26px;height:26px;stroke:var(--maroon-deep);opacity:0.6;}
+.photo-placeholder .cap{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.6rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  text-align:center;
+  padding:0 1rem;
+}
+
+.hero-text{opacity:0;animation:riseIn 0.9s 0.3s cubic-bezier(.2,.8,.2,1) forwards;}
+.hero-text .eyebrow{margin-bottom:1rem;}
+@media (max-width:760px){.hero-text .eyebrow{justify-content:center;}}
+.hero-text h1{
+  font-size:clamp(2.1rem, 5vw, 3.4rem);
+  line-height:1.06;
+  margin-bottom:0.9rem;
+}
+.hero-text .role{
+  font-family:'Source Serif 4', serif;
+  font-style:italic;
+  font-size:1.15rem;
+  color:var(--ink-soft);
+  margin-bottom:1.1rem;
+}
+.hero-text p.lede{
+  max-width:52ch;
+  color:var(--ink-soft);
+  font-size:1.02rem;
+  margin-bottom:1.6rem;
+}
+@media (max-width:760px){.hero-text p.lede{max-width:100%;margin-left:auto;margin-right:auto;}}
+
+.cta-row{display:flex;gap:1rem;flex-wrap:wrap;}
+@media (max-width:760px){.cta-row{justify-content:center;}}
+.btn{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.74rem;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  padding:0.85rem 1.5rem;
+  border-radius:2px;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.btn-primary{
+  background:var(--maroon);
+  color:var(--paper);
+  box-shadow:0 10px 22px rgba(124,44,34,0.28);
+}
+.btn-primary:hover{background:var(--maroon-deep);transform:translateY(-2px);}
+.btn-ghost{
+  border:1px solid var(--ink);
+  color:var(--ink);
+}
+.btn-ghost:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);}
+
+@keyframes riseIn{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+/* stat strip */
+.stats{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:2rem 0;
+}
+.stats-inner{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.5rem;
+  text-align:center;
+}
+@media (max-width:700px){.stats-inner{grid-template-columns:repeat(2,1fr);}}
+.stat-num{
+  font-family:'Fraunces', serif;
+  font-size:2rem;
+  color:var(--maroon);
+  font-weight:600;
+}
+.stat-label{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.62rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin-top:0.3rem;
+}
+
+/* section generic */
+section{
+  padding:5rem 0;
+  position:relative;
+  z-index:1;
+}
+.section-head{
+  max-width:640px;
+  margin-bottom:3rem;
+}
+.section-head h2{
+  font-size:clamp(1.7rem,3.4vw,2.3rem);
+  margin-top:0.8rem;
+}
+.section-head p{color:var(--ink-soft);margin-top:0.8rem;}
+
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ===== ABOUT ===== */
+.about-grid{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:3rem;
+}
+@media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+.about-grid p{color:var(--ink-soft);margin-bottom:1rem;}
+.about-grid p:last-of-type{margin-bottom:0;}
+.pull{
+  border-left:2px solid var(--brass);
+  padding-left:1.4rem;
+  font-family:'Fraunces', serif;
+  font-style:italic;
+  font-size:1.25rem;
+  color:var(--maroon-deep);
+  align-self:start;
+}
+
+/* ===== TIMELINE (credentials) ===== */
+.timeline{
+  position:relative;
+  padding-left:2rem;
+  border-left:1px solid var(--line);
+}
+.tl-item{
+  position:relative;
+  padding-bottom:2.2rem;
+}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{
+  content:"";
+  position:absolute;
+  left:-2.44rem;
+  top:0.25rem;
+  width:9px;height:9px;
+  border-radius:50%;
+  background:var(--paper);
+  border:2px solid var(--maroon);
+}
+.tl-year{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.05em;
+  color:var(--maroon);
+  margin-bottom:0.25rem;
+  display:block;
+}
+.tl-title{font-weight:600;font-size:1.05rem;color:var(--ink);margin-bottom:0.2rem;font-family:'Fraunces',serif;}
+.tl-desc{color:var(--ink-soft);font-size:0.95rem;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+@media (max-width:800px){.two-col{grid-template-columns:1fr;gap:3rem;}}
+.assoc-list{list-style:none;}
+.assoc-list li{
+  padding:0.85rem 0;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  gap:0.7rem;
+  font-size:0.98rem;
+}
+.assoc-list li::before{
+  content:"§";
+  color:var(--brass);
+  font-family:'Fraunces',serif;
+  font-weight:600;
+}
+
+/* ===== PRACTICE AREAS ===== */
+.practice-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.4rem;
+}
+@media (max-width:900px){.practice-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:600px){.practice-grid{grid-template-columns:1fr;}}
+.pcard{
+  background:var(--paper-alt);
+  border:1px solid var(--line);
+  padding:1.8rem 1.6rem;
+  border-radius:3px;
+  transition:transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  position:relative;
+  overflow:hidden;
+}
+.pcard::before{
+  content:"";
+  position:absolute;top:0;left:0;
+  width:3px;height:100%;
+  background:var(--maroon);
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform 0.35s ease;
+}
+.pcard:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent;}
+.pcard:hover::before{transform:scaleY(1);}
+.pcard svg{width:28px;height:28px;stroke:var(--maroon);margin-bottom:1rem;}
+.pcard h3{font-size:1.05rem;margin-bottom:0.5rem;}
+.pcard p{color:var(--ink-soft);font-size:0.9rem;}
+
+/* ===== DOCKET / REPORTED JUDGMENTS (signature) ===== */
+.docket{
+  background:var(--ink);
+  color:var(--paper);
+  position:relative;
+  border-radius:4px;
+  padding:3.5rem 0;
+}
+.docket::after{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(169,130,62,0.12), transparent 55%),
+    radial-gradient(circle at 5% 90%, rgba(124,44,34,0.25), transparent 55%);
+  pointer-events:none;
+  border-radius:4px;
+}
+.docket .wrap{position:relative;z-index:1;}
+.docket .eyebrow{color:var(--brass-soft);}
+.docket .eyebrow::before{background:var(--brass-soft);}
+.docket h2{color:var(--paper);}
+.docket .section-head p{color:rgba(244,237,221,0.65);}
+
+.docket-list{
+  border-top:1px solid rgba(244,237,221,0.18);
+}
+.docket-row{
+  display:grid;
+  grid-template-columns:150px 1fr;
+  gap:1.5rem;
+  padding:1.15rem 0;
+  border-bottom:1px solid rgba(244,237,221,0.14);
+  align-items:baseline;
+  transition:background 0.3s ease, padding-left 0.3s ease;
+}
+.docket-row:hover{background:rgba(244,237,221,0.05);padding-left:0.6rem;}
+@media (max-width:640px){
+  .docket-row{grid-template-columns:1fr;gap:0.3rem;}
+}
+.docket-cite{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.82rem;
+  color:var(--brass-soft);
+  letter-spacing:0.02em;
+}
+.docket-case{
+  font-family:'Source Serif 4', serif;
+  font-style:italic;
+  font-size:0.98rem;
+  color:rgba(244,237,221,0.9);
+}
+.docket-more{
+  margin-top:1.8rem;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  color:rgba(244,237,221,0.55);
+  letter-spacing:0.04em;
+}
+
+/* ===== EXPERIENCE (prior firms) ===== */
+.exp-list{display:flex;flex-direction:column;gap:0;}
+.exp-item{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:2rem;
+  padding:2rem 0;
+  border-bottom:1px solid var(--line);
+}
+.exp-item:first-child{padding-top:0;}
+@media (max-width:760px){.exp-item{grid-template-columns:1fr;gap:0.6rem;}}
+.exp-firm{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;color:var(--maroon-deep);}
+.exp-role{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--ink-soft);margin-top:0.3rem;letter-spacing:0.03em;}
+.exp-desc{color:var(--ink-soft);font-size:0.95rem;}
+
+/* ===== FIRM ===== */
+.firm-panel{
+  background:var(--paper-alt);
+  border:1px solid var(--line);
+  padding:3rem;
+  border-radius:4px;
+}
+@media (max-width:640px){.firm-panel{padding:2rem 1.4rem;}}
+.firm-panel p{color:var(--ink-soft);margin-bottom:1rem;}
+.firm-values{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+  margin-top:2rem;
+}
+@media (max-width:700px){.firm-values{grid-template-columns:1fr;}}
+.fv{
+  border-top:2px solid var(--brass);
+  padding-top:0.8rem;
+}
+.fv-title{font-family:'Fraunces',serif;font-weight:600;color:var(--maroon-deep);margin-bottom:0.3rem;}
+.fv-desc{font-size:0.88rem;color:var(--ink-soft);}
+
+/* ===== CONTACT ===== */
+.contact{
+  background:var(--maroon-deep);
+  color:var(--paper);
+  border-radius:4px;
+  padding:4rem 0;
+  text-align:center;
+}
+.contact .eyebrow{justify-content:center;color:var(--brass-soft);}
+.contact .eyebrow::before{background:var(--brass-soft);}
+.contact h2{color:var(--paper);margin-top:0.8rem;}
+.contact p.lede{color:rgba(244,237,221,0.7);max-width:50ch;margin:0.9rem auto 2rem;}
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.6rem;
+  max-width:820px;
+  margin:2.4rem auto 0;
+  text-align:left;
+}
+@media (max-width:700px){.contact-grid{grid-template-columns:1fr;text-align:center;}}
+.c-block .eyebrow2{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--brass-soft);
+  margin-bottom:0.4rem;
+}
+.c-block a, .c-block div{color:rgba(244,237,221,0.9);font-size:0.95rem;text-decoration:none;}
+.c-block a:hover{color:var(--brass-soft);}
+
+footer{
+  text-align:center;
+  padding:2.4rem 0;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.68rem;
+  letter-spacing:0.05em;
+  color:var(--ink-soft);
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">
+      <span class="seal">ASC</span>
+      Aijaz Shirazi &amp; Co.
+    </div>
+    <nav class="links" id="navLinks">
+      <a href="#about">Profile</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#practice">Practice</a>
+      <a href="#judgments">Judgments</a>
+      <a href="#firm">The Firm</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="photo-frame">
+      <div class="photo-ring"></div>
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6" stroke-linecap="round"/><circle cx="12" cy="8" r="4"/></svg>
+        <span class="cap">Professional<br>photograph</span>
+      </div>
+    </div>
+    <div class="hero-text">
+      <span class="eyebrow">Advocate &middot; Supreme Court of Pakistan</span>
+      <h1>Syed Aijaz Hussain Shirazi</h1>
+      <p class="role">Founder, Aijaz Shirazi &amp; Company — Advocates &amp; Legal Consultants, Karachi</p>
+      <p class="lede">A banking, corporate, and litigation practice built over two decades of courtroom experience — advising financial institutions, companies, and private clients across Pakistan's District Courts, Banking Courts, High Courts, and the Supreme Court.</p>
+      <div class="cta-row">
+        <a href="#contact" class="btn btn-primary">Request a Consultation</a>
+        <a href="#judgments" class="btn btn-ghost">Reported Judgments</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats" style="padding-top:0;">
+  <div class="wrap stats-inner">
+    <div class="reveal"><div class="stat-num">20+</div><div class="stat-label">Years at the Bar</div></div>
+    <div class="reveal"><div class="stat-num">2021</div><div class="stat-label">Enrolled, Supreme Court</div></div>
+    <div class="reveal"><div class="stat-num">2016</div><div class="stat-label">Firm Established</div></div>
+    <div class="reveal"><div class="stat-num">20+</div><div class="stat-label">Reported Judgments</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Profile</span>
+      <h2>A career built on banking, contract, and commercial litigation</h2>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>Syed Aijaz Hussain Shirazi has practised law in Karachi since his enrolment as an Advocate of the Subordinate Courts in 2002, progressing to the Sindh High Court in 2004 and the Supreme Court of Pakistan in 2021. His practice spans civil and banking recoveries, contractual and commercial disputes, corporate finance, arbitration, and criminal complaints arising from financial institutions.</p>
+        <p>Before founding Aijaz Shirazi &amp; Company in 2016, he built his practice as an associate at established Karachi firms — including Ijaz Ahmed and Associates and Mandviwalla &amp; Zafar — conducting trials before District Courts, Banking Courts, and the High Court, and advising financial institutions on syndicate finance, security documentation, and recovery of decretal amounts.</p>
+        <p>His work is reflected in over twenty reported judgments across Pakistan's law reports, spanning banking recovery, corporate winding-up, arbitration, and constitutional matters.</p>
+      </div>
+      <div class="pull reveal">
+        &ldquo;Time is a great wealth — our objective is to deliver instant, tailor-made legal service without compromising on rigour.&rdquo;
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials" style="background:var(--paper-alt);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Credentials</span>
+      <h2>Enrolment, education &amp; associations</h2>
+    </div>
+    <div class="two-col">
+      <div class="reveal">
+        <div class="timeline">
+          <div class="tl-item">
+            <span class="tl-year">2001</span>
+            <div class="tl-title">LLB, Sindh Muslim Law College, Karachi</div>
+            <div class="tl-desc">Civil, criminal, company, contract, commercial, constitutional and tax law, among other core subjects.</div>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">1 April 2002</span>
+            <div class="tl-title">Enrolled — Advocate, Subordinate Courts</div>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">8 May 2004</span>
+            <div class="tl-title">Enrolled — Advocate, High Court</div>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">July 2016</span>
+            <div class="tl-title">Founded Aijaz Shirazi &amp; Company</div>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">12 November 2021</span>
+            <div class="tl-title">Enrolled — Advocate, Supreme Court of Pakistan</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3 style="font-size:1.05rem;margin-bottom:1rem;">Professional Associations</h3>
+        <ul class="assoc-list">
+          <li>Supreme Court Bar Association of Pakistan</li>
+          <li>Sindh High Court Bar Association, Karachi</li>
+          <li>Karachi Bar Association</li>
+          <li>Corporate and Banking Lawyers Association, Karachi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE AREAS -->
+<section id="practice">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Areas of Practice</span>
+      <h2>Full-service counsel for institutions and individuals</h2>
+      <p>Aijaz Shirazi &amp; Company advises financial institutions, companies, private individuals and regulatory bodies, combining courtroom advocacy with commercially-minded advisory work.</p>
+    </div>
+    <div class="practice-grid">
+
+      <div class="pcard reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 10v9M15 10v9"/><path d="M3 19h18"/></svg>
+        <h3>Banking &amp; Finance</h3>
+        <p>Loan, security and charge documentation, syndicate facilities, restructuring, legal audits, and recovery proceedings before Banking Courts and High Courts.</p>
+      </div>
+
+      <div class="pcard reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21h16"/><path d="M6 21V9l6-5 6 5v12"/><path d="M10 21v-6h4v6"/></svg>
+        <h3>Mortgage Finance</h3>
+        <p>Title review, search certificates, mortgage creation and redemption, and registration of mortgage deeds for financial institutions and private borrowers.</p>
+      </div>
+
+      <div class="pcard reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+        <h3>Islamic Finance</h3>
+        <p>Shariah-compliant documentation and advisory for Sukuk, musharakah, murabaha and ijara structures.</p>
+      </div>
+
+      <div class="pcard reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l-3 5 3 5M19 8l3 5-3 5M2 13h6M16 13h6"/></svg>
+        <h3>Arbitration</h3>
+        <p>Drafting and issuing arbitration notices, representation before arbitrators, and challenges to awards before the courts.</p>
+      </div>
+
+      <div class="pcard reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+        <h3>Criminal Complaints &amp; Banking Offences</h3>
+        <p>Complaints under the Financial Institutions (Recovery of Finances) Ordinance, pre- and post-arrest bail, and defence before Special Courts (Banking Offences).</p>
+      </div>
+
+      <div class="pcard reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l7 7M14 6l4-4 3 3-4 4M6 14l-4 4 3 3 4-4M13 13l7 7"/></svg>
+        <h3>Company Law &amp; Business Startup</h3>
+        <p>Incorporation and SECP compliance, drafting of Memoranda and Articles, mergers, winding-up petitions, and shareholder disputes.</p>
+      </div>
+
+      <div class="pcard reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4zM4 12h10v8H4zM17 12h3v8h-3z"/></svg>
+        <h3>Constitutional Matters</h3>
+        <p>Constitutional petitions before the High Courts, including fundamental-rights and public-interest litigation.</p>
+      </div>
+
+      <div class="pcard reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-5h6v5"/></svg>
+        <h3>Construction &amp; Building</h3>
+        <p>Construction and professional-appointment contracts, environmental NOCs, and dispute resolution for builders and developers.</p>
+      </div>
+
+      <div class="pcard reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 6a5.5 5.5 0 019.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        <h3>Family &amp; Guardian Matters</h3>
+        <p>Dissolution of marriage, maintenance, dower recovery, and guardianship and custody proceedings before the Family Courts.</p>
+      </div>
+
+      <div class="pcard reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5L20 3M17 6l3 3M13 10l2 2"/></svg>
+        <h3>Landlord &amp; Tenant</h3>
+        <p>Rent and lease agreements, fair-rent determination, deposit of rent, and ejectment proceedings before the Rent Controller.</p>
+      </div>
+
+      <div class="pcard reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        <h3>Labour &amp; Service Laws</h3>
+        <p>Advisory and representation before Labour Courts and Service Tribunals for both institutions and individual workers.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DOCKET / REPORTED JUDGMENTS -->
+<section id="judgments">
+  <div class="wrap docket">
+    <div class="wrap" style="padding:0 6vw;">
+      <div class="section-head reveal">
+        <span class="eyebrow">The Docket</span>
+        <h2>Reported Judgments</h2>
+        <p>A selection of matters reported in Pakistan's principal law journals, spanning banking recovery, corporate winding-up, arbitration and constitutional adjudication.</p>
+      </div>
+      <div class="docket-list reveal">
+        <div class="docket-row"><span class="docket-cite">2007 SBLR 1496</span><span class="docket-case">Mybank Limited v. Speedway Fondmetall Pakistan Limited &amp; another</span></div>
+        <div class="docket-row"><span class="docket-cite">2009 CLD 342</span><span class="docket-case">Messrs Aamer Enterprises (Pvt.) Ltd &amp; 3 others v. Messrs United Bank Limited</span></div>
+        <div class="docket-row"><span class="docket-cite">2011 CLD 1770</span><span class="docket-case">Standard Chartered Bank (Pakistan) Ltd v. Admore Gas (Pvt.) Ltd &amp; others</span></div>
+        <div class="docket-row"><span class="docket-cite">2012 CLD 1136</span><span class="docket-case">Pakistan Industrial Credit &amp; Investment Corp. Ltd v. Khairpur Sugar Mills Ltd</span></div>
+        <div class="docket-row"><span class="docket-cite">2012 CLD 1372</span><span class="docket-case">United Bank Limited v. Mehmood Ilyas Khan</span></div>
+        <div class="docket-row"><span class="docket-cite">2013 SBLR 88</span><span class="docket-case">Khurshid Ahmed v. Captain Feroze Aftab &amp; others</span></div>
+        <div class="docket-row"><span class="docket-cite">PLD 2013 Sindh 290</span><span class="docket-case">Arabian Sea Enterprises Limited v. Mr. Abid Amin Bhatti</span></div>
+        <div class="docket-row"><span class="docket-cite">2013 CLD 1229</span><span class="docket-case">Syma Mahnaz Vayani &amp; others v. Molasses Export Company (Pvt.) Ltd</span></div>
+        <div class="docket-row"><span class="docket-cite">2013 SBLR 1276</span><span class="docket-case">Syma Mahnaz Vayani &amp; others v. Molasses Export Company (Pvt.) Ltd</span></div>
+        <div class="docket-row"><span class="docket-cite">2013 SBLR 1315</span><span class="docket-case">Arabian Sea Enterprises Limited v. Mr. Abid Amin Bhatti</span></div>
+        <div class="docket-row"><span class="docket-cite">2013 CLD 1965</span><span class="docket-case">Jahangir Siddiqui v. Noman Abid Investment Management Ltd &amp; 3 others</span></div>
+        <div class="docket-row"><span class="docket-cite">2016 SBLR 497</span><span class="docket-case">Apollo Textile Mills v. Standard Chartered Leasing</span></div>
+        <div class="docket-row"><span class="docket-cite">2016 SBLR 594</span><span class="docket-case">Shahtaj Textile Mill Ltd v. Standard Chartered Bank (Pakistan) Ltd &amp; others</span></div>
+        <div class="docket-row"><span class="docket-cite">2016 CLD 618</span><span class="docket-case">Bank Alfalah Limited v. Syed Zulfiqar Ali Rizvi &amp; others</span></div>
+        <div class="docket-row"><span class="docket-cite">2016 SBLR 753</span><span class="docket-case">Dubai Islamic Bank Pakistan Ltd v. Gulistan Textile Mills Ltd &amp; others</span></div>
+        <div class="docket-row"><span class="docket-cite">2016 CLD 984</span><span class="docket-case">Messrs Shahtaj Textile Mill Ltd v. J &amp; M Clothing Company &amp; others</span></div>
+        <div class="docket-row"><span class="docket-cite">2016 CLD 1147</span><span class="docket-case">Pak Libya Holding Company (Pvt.) Ltd v. Maxco (Pvt.) Ltd &amp; 2 others</span></div>
+        <div class="docket-row"><span class="docket-cite">2016 CLD 1175</span><span class="docket-case">Muhammad Ali Rashid v. United Bank Limited &amp; 7 others</span></div>
+        <div class="docket-row"><span class="docket-cite">2016 YLR 1477</span><span class="docket-case">Messrs Shahtaj Textile Ltd v. Standard Chartered Bank (Pakistan) Ltd &amp; 5 others</span></div>
+        <div class="docket-row"><span class="docket-cite">2018 PLC 117</span><span class="docket-case">Soneri Bank Limited v. Aurangzeb &amp; others</span></div>
+        <div class="docket-row"><span class="docket-cite">2019 SBLR 63</span><span class="docket-case">Fateh Jeans Limited &amp; others v. The Russian Federation &amp; others</span></div>
+        <div class="docket-row"><span class="docket-cite">2019 CLD 91</span><span class="docket-case">Syed Wajahat Hussain Zaidi &amp; others v. United Bank Limited</span></div>
+        <div class="docket-row"><span class="docket-cite">2019 CLD 659</span><span class="docket-case">Pak Leather Crafts Limited v. Al-Baraka Bank Limited</span></div>
+        <div class="docket-row"><span class="docket-cite">2021 CLC 1222</span><span class="docket-case">Muhammad Haseeb Fatani v. Federation of Pakistan &amp; others</span></div>
+        <div class="docket-row"><span class="docket-cite">2021 CLD 951</span><span class="docket-case">Muhammad Haseeb Fatani v. Federation of Pakistan &amp; others</span></div>
+        <div class="docket-row"><span class="docket-cite">2022 CLC 509 (Sindh)</span><span class="docket-case">Muhammad Maqsood v. Tauheed Sultan through attorney &amp; 7 others</span></div>
+      </div>
+      <div class="docket-more">Full citations available on request &mdash; further reported matters continue to be added to the record.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:var(--paper-alt);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Career History</span>
+      <h2>Formative years at leading Karachi firms</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-firm">Aijaz Shirazi &amp; Company</div>
+          <div class="exp-role">FOUNDER &mdash; JULY 2016 TO PRESENT</div>
+        </div>
+        <div class="exp-desc">Independent practice advising financial institutions, companies and private clients on banking, corporate, arbitration and litigation matters.</div>
+      </div>
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-firm">Ijaz Ahmed and Associates</div>
+          <div class="exp-role">ASSOCIATE &mdash; AUG 2007 TO JUL 2016</div>
+        </div>
+        <div class="exp-desc">Civil and banking recovery for local and foreign banks; corporate finance, syndicate agreements and security documentation; trial and auction proceedings before Banking Courts and the High Court.</div>
+      </div>
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-firm">Mandviwalla &amp; Zafar</div>
+          <div class="exp-role">ASSOCIATE &mdash; MAY 2004 TO JUL 2007</div>
+        </div>
+        <div class="exp-desc">Trials in District, Banking, Labour and High Courts; recovery, mortgage and redemption matters; opinions to financial institutions on title and mortgage creation.</div>
+      </div>
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-firm">Mr. Mehmood A. Qureshi, Advocate High Court</div>
+          <div class="exp-role">ASSOCIATE &mdash; APR 2003 TO MAY 2004</div>
+        </div>
+        <div class="exp-desc">Civil, rent, criminal and family litigation, including guardianship, dower recovery and landlord-tenant disputes.</div>
+      </div>
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-firm">Haleem &amp; Khan</div>
+          <div class="exp-role">ASSOCIATE &mdash; APR 2002 TO MAR 2003</div>
+        </div>
+        <div class="exp-desc">Pleadings and commercial contracts; finance and security documentation; civil, matrimonial, rent, banking and criminal matters.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIRM -->
+<section id="firm">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Firm</span>
+      <h2>Aijaz Shirazi &amp; Company</h2>
+    </div>
+    <div class="firm-panel reveal">
+      <p>Aijaz Shirazi &amp; Company (&ldquo;ASC&rdquo;) is a Karachi-based law firm specialising in advising financial institutions, companies, private individuals and regulatory bodies on matters affecting their legal interests. The firm believes in tailor-made solutions, cost-conscious billing, and instant, time-effective service.</p>
+      <p>Functioning as a progressive, full-service practice with a dedicated team of lawyers and paralegals, ASC handles litigation alongside diversified advisory work in corporate, banking, property, labour and constitutional matters &mdash; with a working relationship spanning the Supreme Court, High Courts, Tribunals, Banking Courts and District Courts across Pakistan.</p>
+      <div class="firm-values">
+        <div class="fv"><div class="fv-title">Tailored</div><div class="fv-desc">Solutions built around each client's commercial reality, not a standard template.</div></div>
+        <div class="fv"><div class="fv-title">Responsive</div><div class="fv-desc">Time-effective service, with flexible billing arranged to the client's convenience.</div></div>
+        <div class="fv"><div class="fv-title">Full-Service</div><div class="fv-desc">Litigation and advisory under one roof, from courtroom to boardroom.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap contact">
+    <span class="eyebrow">Get in Touch</span>
+    <h2>Speak with the firm</h2>
+    <p class="lede">For consultations, referrals, or matters requiring representation before Pakistan's courts and tribunals, reach the office directly.</p>
+    <div class="contact-grid">
+      <div class="c-block">
+        <div class="eyebrow2">Office</div>
+        <div>Office No. 63, 5th Floor, Farid Chambers<br>Abdullah Haroon Road, Saddar<br>Karachi, Pakistan</div>
+      </div>
+      <div class="c-block">
+        <div class="eyebrow2">Direct</div>
+        <div><a href="tel:+922135623344">+92 21 3562 3344</a></div>
+        <div><a href="tel:+923332252629">0333 225 2629</a></div>
+      </div>
+      <div class="c-block">
+        <div class="eyebrow2">Email &amp; Web</div>
+        <div><a href="mailto:aijaz.shirazi@asc.org.pk">aijaz.shirazi@asc.org.pk</a></div>
+        <div><a href="http://www.asc.org.pk">www.asc.org.pk</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; Aijaz Shirazi &amp; Company &mdash; Advocates &amp; Legal Consultants, Karachi
+</footer>
+
+<script>
+// mobile nav toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
